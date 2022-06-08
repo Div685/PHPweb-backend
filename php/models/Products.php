@@ -71,5 +71,29 @@
 
     }
 
+    // Delete Selected Products
+
+    public function delete($ids) {
+      try {
+        // sanitize
+        $ids = htmlspecialchars(strip_tags($ids));
+
+        $query = 'DELETE FROM ' . $this->table . ' WHERE id IN ($ids)';
+        
+        // return query
+        $stmt = $this->conn->prepare($query);
+
+        if($stmt->execute()){
+          return true;
+        }
+         // Print error if something goes wrong
+         printf("Error: $s. \n", $stmt->error);
+
+         return false;
+
+      } catch (PDOException $e) {
+        die('ERROR: '. $e->getMessage());
+      }
+    }
   }
 ?>
