@@ -30,6 +30,7 @@
       extract($row);
 
       $product_item = array(
+        'pid' => $pid,
         'SKU' => $SKU,
         'Name' => $Name,
         'Price' => $Price,
