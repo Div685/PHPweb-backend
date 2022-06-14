@@ -1,8 +1,11 @@
-<?php
-class Products
+<?
+
+include_once '../config/Database.php';
+
+class Products extends Database
 {
   // DB Stuff
-  private $conn;
+  protected $conn;
   private $table = 'products';
 
   // Properties
@@ -11,9 +14,9 @@ class Products
   public $Price;
   public $Measure;
 
-  public function __construct($db)
+  public function __construct()
   {
-    $this->conn = $db;
+    parent::connect();
   }
 
   // Get Products
@@ -34,7 +37,6 @@ class Products
   public function create()
   {
     try {
-
       $query = 'INSERT INTO ' . $this->table . ' 
             SET 
             SKU = :SKU, 
@@ -73,7 +75,7 @@ class Products
   }
 
   // Delete Selected Products
-  function deleteMultipleData($conn, $checkedId)
+  function deleteMultipleData($checkedId)
   {
     try {
       $checkedIdGroup = implode(',', $checkedId);

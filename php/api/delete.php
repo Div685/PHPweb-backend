@@ -14,12 +14,12 @@ include_once '../models/Products.php';
 $database = new Database();
 $db = $database->connect();
 
-$products = new Products($db);
+$products = new Products();
 
 // Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
 if (isset($_POST['checkbox'])) {
   $checkedId = $_POST['checkbox'];
-  $deleteMsg = $products->deleteMultipleData($db, $checkedId);
+  $deleteMsg = $products->deleteMultipleData($checkedId);
 }

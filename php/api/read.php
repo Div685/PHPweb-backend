@@ -12,7 +12,7 @@ $database = new Database();
 $db = $database->connect();
 
 // Instantiate category object
-$products = new Products($db);
+$products = new Products();
 
 // Products read query
 $result = $products->read();

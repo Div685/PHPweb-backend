@@ -15,7 +15,7 @@ $database = new Database();
 $db = $database->connect();
 
 // Instantiate category object
-$products = new Products($db);
+$products = new Products();
 
 // Get raw posted data
 $data = json_decode(file_get_contents("php://input"));

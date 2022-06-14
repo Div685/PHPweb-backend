@@ -6,7 +6,7 @@ class Database
   private $db_name = 'test_db'; //id19004304_scandiproductsdb
   private $username = 'devuser'; // divUser
   private $password = 'devpass'; //G+XwvPc{FDJ2jiYm
-  private $conn;
+  protected $conn;
 
   // DB Connect
   public function connect()
@@ -23,5 +23,3 @@ class Database
     return $this->conn;
   }
 }
-  // $db = new Database();
-  // $db->connect();
