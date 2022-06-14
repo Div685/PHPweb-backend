@@ -1,27 +1,25 @@
 <?php
 
- // Headers
-  header('Access-Control-Allow-Origin: *');
-  header('Content-Type: application/json');
-  header('Access-Control-Allow-Methods: DELETE');
-  header('Access-Control-Allow-Methods: POST');
-  header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization,X-Requested-With');
+// Headers
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+header('Access-Control-Allow-Methods: DELETE');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization,X-Requested-With');
 
-  include_once '../config/Database.php';
-  include_once '../models/Products.php';
+include_once '../config/Database.php';
+include_once '../models/Products.php';
 
-  // Instantiate DB & connect
-  $database = new Database();
-  $db = $database->connect();
+// Instantiate DB & connect
+$database = new Database();
+$db = $database->connect();
 
-  $products = new Products($db);
+$products = new Products($db);
 
-  // Get raw posted data
-  $data = json_decode(file_get_contents("php://input"));
+// Get raw posted data
+$data = json_decode(file_get_contents("php://input"));
 
-  if(isset($_POST['checkbox'])){
-    $checkedId = $_POST['checkbox'];
-    $deleteMsg = $products->deleteMultipleData($db, $checkedId);
-  }
-  
-?>
+if (isset($_POST['checkbox'])) {
+  $checkedId = $_POST['checkbox'];
+  $deleteMsg = $products->deleteMultipleData($db, $checkedId);
+}
