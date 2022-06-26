@@ -6,7 +6,6 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization,X-Requested-With');
 
-
 include_once '../config/Database.php';
 include_once '../models/Products.php';
 
@@ -20,10 +19,10 @@ $products = new Products();
 // Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-$products->SKU = $data->SKU;
-$products->Name = $data->Name;
-$products->Price = $data->Price;
-$products->Measure = $data->Measure;
+$products->setSKU($data->SKU);
+$products->setName($data->Name);
+$products->setPrice($data->Price);
+$products->setMeasure($data->Measure);
 
 
 // Create Post

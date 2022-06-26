@@ -1,4 +1,4 @@
-<?
+<?php
 
 include_once '../config/Database.php';
 
@@ -19,8 +19,47 @@ class Products extends Database
     parent::connect();
   }
 
-  // Get Products
+  public function setSKU($SKU)
+  {
+    $this->SKU = $SKU;
+  }
 
+  public function getSKU()
+  {
+    return $this->SKU;
+  }
+
+  public function setName($Name)
+  {
+    $this->Name = $Name;
+  }
+
+  public function getName()
+  {
+    return $this->Name;
+  }
+
+  public function setPrice($Price)
+  {
+    $this->Price = $Price;
+  }
+
+  public function getPrice()
+  {
+    return $this->Price;
+  }
+
+  public function setMeasure($Measure)
+  {
+    $this->Measure = $Measure;
+  }
+
+  public function getMeasure()
+  {
+    return $this->Measure;
+  }
+
+  // Get Products
   public function read()
   {
     $query = 'SELECT pid, SKU, Name, Price, Measure FROM ' . $this->table . ' ORDER BY created_at DESC';
@@ -48,16 +87,16 @@ class Products extends Database
       $stmt = $this->conn->prepare($query);
 
       // Clean data
-      $this->SKU      = htmlspecialchars(strip_tags($this->SKU));
-      $this->Name     = htmlspecialchars(strip_tags($this->Name));
-      $this->Price    = htmlspecialchars(strip_tags($this->Price));
-      $this->Measure  = htmlspecialchars(strip_tags($this->Measure));
+      $this->setSKU(htmlspecialchars(strip_tags($this->getSKU())));
+      $this->setName(htmlspecialchars(strip_tags($this->getName())));
+      $this->setPrice(htmlspecialchars(strip_tags($this->getPrice())));
+      $this->setMeasure(htmlspecialchars(strip_tags($this->getMeasure())));
 
       // Bind data
-      $stmt->bindParam(':SKU', $this->SKU);
-      $stmt->bindParam(':Name', $this->Name);
-      $stmt->bindParam(':Price', $this->Price);
-      $stmt->bindParam(':Measure', $this->Measure);
+      $stmt->bindParam(':SKU', $this->getSKU());
+      $stmt->bindParam(':Name', $this->getName());
+      $stmt->bindParam(':Price', $this->getPrice());
+      $stmt->bindParam(':Measure', $this->getMeasure());
 
 
       // Execute query
