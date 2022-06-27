@@ -17,13 +17,13 @@ $db = $database->connect();
 $products = new Products();
 
 // Get raw posted data
-$data = json_decode(file_get_contents("php://input"));
 
-$products->setSKU($data->SKU);
-$products->setName($data->Name);
-$products->setPrice($data->Price);
-$products->setMeasure($data->Measure);
+$data = json_decode(array_keys($_POST)[0]);
 
+$products->SKU      = $data->SKU;
+$products->Name     = $data->Name;
+$products->Price    = $data->Price;
+$products->Measure  = $data->Measure;
 
 // Create Post
 
